@@ -44,14 +44,14 @@ def index():
 
     # extract data needed for visuals
     # TODO: Below is an example - modify to extract data for your own visuals
-    gen_count = df.groupby('genre').count()['message']
-    gen_per = round(100*gen_count/gen_count.sum(), 2)
-    gen = list(gen_count.index)
-    cat_num = df.drop(['id', 'message', 'original', 'genre'], axis = 1).sum()
-    cat_num = cat_num.sort_values(ascending = False)
-    cat = list(cat_num.index)
+    count_cat = df.groupby('catre').count()['message']
+    per_cat = round(100*count_cat/count_cat.sum(), 2)
+    cat = list(count_cat.index)
+    num_cat = df.drop(['id', 'message', 'original', 'genre'], axis = 1).sum()
+    num_cat = num_cat.sort_values(ascending = False)
+    cat = list(num_cat.index)
 
-    print(cat_num)
+    print(num_cat)
     print(cat)
 
     # create visuals
@@ -65,8 +65,8 @@ def index():
                 "name": "Genre",
                 "pull": 0,
                 "domain": {
-                  "x": gen_per,
-                  "y": gen
+                  "x": per_cat,
+                  "y": cat
                 },
                 "marker": {
                   "colors": [
@@ -77,8 +77,8 @@ def index():
                 },
                 "textinfo": "label+value",
                 "hoverinfo": "all",
-                "labels": gen,
-                "values": gen_count
+                "labels": cat,
+                "values": count_cat
               }
             ],
             "layout": {
@@ -90,7 +90,7 @@ def index():
               {
                 "type": "bar",
                 "x": cat,
-                "y": cat_num,
+                "y": num_cat,
                 "marker": {
                   "color": 'lightblue'}
                 }
