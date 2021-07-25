@@ -24,10 +24,10 @@ in this project a model is trained in order to classify a new message.
 
 ## Instructions:
     run the followings commands in project directory:
-    
+
     ELT: python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
     Model creation: python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
-    app: python run.py
+    app: python app/run.py
     
 ## file structure
     /app folder for web app
