@@ -27,12 +27,12 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///../data/DisasterResponse.db')
+engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('df', engine)
 
 # load model
 # load model
-model = joblib.load("../models/classifier.pkl")
+model = joblib.load("models/classifier.pkl")
 
 print(model)
 
@@ -44,7 +44,7 @@ def index():
 
     # extract data needed for visuals
     # TODO: Below is an example - modify to extract data for your own visuals
-    count_cat = df.groupby('catre').count()['message']
+    count_cat = df.groupby('genre').count()['message']
     per_cat = round(100*count_cat/count_cat.sum(), 2)
     cat = list(count_cat.index)
     num_cat = df.drop(['id', 'message', 'original', 'genre'], axis = 1).sum()
